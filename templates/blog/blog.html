@@ -1,0 +1,212 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Blog{% endblock %}
+
+{% block content %}
+<!-- ##### Breadcumb Area Start ##### -->
+<div class="breadcumb-area bg-img" style="background-image: url(/static/img/breadcrumb.jpg)">
+    <div class="bradcumbContent">
+        <h2 style="font-family: krinkes_decor_personal_useRg; color:#e2f109">Blog</h2>
+    </div>
+</div>
+
+
+<!-- ##### Blog Area Start ##### -->
+<div class="blog-area mt-50 section-padding-100 text-capitalize">
+    <div class="container">
+        <div class="row">
+            {% if user.is_authenticated %}
+            <div class="col-12 col-md-8">
+                <div class="academy-blog-posts">
+                    <div class="row">
+                        {% if blog_list %}
+                        {% for blog in blog_list %}
+                        <!-- Single Blog Start -->
+                        <div class="col-12">
+                            <div class="single-blog-post mb-50 wow fadeInUp" data-wow-delay="300ms">
+                                <!-- Post Thumb -->
+                                <div class="blog-post-thumb mb-50">
+                                    <a href="{{blog.get_absolute_url}}"><img src={{blog.image.url}} alt=""></a>
+                                </div>
+                                <!-- Post Title -->
+                                <a href="{{blog.get_absolute_url}}" class="post-title">{{blog.title}}</a>
+                                <!-- Post Meta -->
+                                <div class="post-meta">
+                                    <p>By: <a href="{{blog.get_absolute_url}}">{{blog.name}}</a> | <a href="#">{{blog.date_published}}</a>
+                                </div>
+                                <!-- Post Excerpt -->
+                                <p class="text-black">{{blog.description}}</p>
+                                <!-- Read More btn -->
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="col-md-12">
+                            <p class="text-black mt-100 mb-100 font-weight-bold" style="font-size: 60px;">No Info
+                                Available</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+                <div class="academy-blog-sidebar">
+                    <!-- Blog Post Catagories -->
+                    <div class="blog-post-categories mb-30">
+                        <h5>Categories</h5>
+                        <ul>
+                            <li><a href="#">Subjects</a></li>
+                            {% if user.is_authenticated %}
+                            <li><a href="#">Photo Galleries</a></li>
+                            {% else %}
+                            Photo Galleries
+                            {% endif %}
+                            <li><a href="#">Location</a></li>
+                            <li><a href="#">School Authorization</a></li>
+                            <li><a href="#">Tuition Fee</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Latest Blog Posts Area -->
+                    <div class="latest-blog-posts mb-30">
+                        <h5>Departments</h5>
+                        <!-- Single Latest Blog Post -->
+                        <div class="single-latest-blog-post d-flex mb-30">
+                            <div class="latest-blog-post-thumb">
+                                <img src="{% static 'img/bg-0.jpg' %}" alt="">
+                            </div>
+                            <div class="latest-blog-post-content">
+                                <a href="#" class="post-title">
+                                    <h6>Commercial Department</h6>
+                                </a>
+                                <a href="#" class="post-date">September 09, 2018</a>
+                            </div>
+                        </div>
+                        <!-- Single Latest Blog Post -->
+                        <div class="single-latest-blog-post d-flex mb-30">
+                            <div class="latest-blog-post-thumb">
+                                <img src="{% static 'img/sciencelab.jpg' %}" style="width: 100px; height: 50px;" alt="">
+                            </div>
+                            <div class="latest-blog-post-content">
+                                <a href="#" class="post-title">
+                                    <h6>Science Department</h6>
+                                </a>
+                                <a href="#" class="post-date">September 09, 2011</a>
+                            </div>
+                        </div>
+                        <!-- Single Latest Blog Post -->
+                        <div class="single-latest-blog-post d-flex mb-30">
+                            <div class="latest-blog-post-thumb">
+                                <img src="{% static 'img/arts.jpg' %}" style="width: 100px; height: 50px;" alt="">
+                            </div>
+                            <div class="latest-blog-post-content">
+                                <a href="#" class="post-title">
+                                    <h6>Arts Department</h6>
+                                </a>
+                                <a href="#" class="post-date">September 09, 2011</a>
+                            </div>
+                        </div>
+                        <!-- Single Latest Blog Post -->
+                        <div class="single-latest-blog-post d-flex">
+                            <div class="latest-blog-post-thumb">
+                                <img src="img/blog-img/lb-4.jpg" alt="">
+                            </div>
+                            <div class="latest-blog-post-content">
+                                <a href="#" class="post-title">
+                                    <h6>It Department</h6>
+                                </a>
+                                <a href="#" class="post-date">September 09, 2011</a>
+                            </div>
+                        </div>
+                        <br>
+                        <!-- Single Latest Blog Post -->
+                        <div class="single-latest-blog-post d-flex mb-30">
+                            <div class="latest-blog-post-thumb">
+                                <img src="{% static 'img/fs.jpg'%}" style="width: 100px; height: 50px;" alt="">
+                            </div>
+                            <div class="latest-blog-post-content">
+                                <a href="#" class="post-title">
+                                    <h6>French Subsystem</h6>
+                                </a>
+                                <a href="#" class="post-date">September 09, 2011</a>
+                            </div>
+                        </div>
+                        <!-- Single Latest Blog Post -->
+                        <div class="single-latest-blog-post d-flex mb-30">
+                            <div class="latest-blog-post-thumb">
+                                <img src="img/blog-img/lb-2.jpg" alt="">
+                            </div>
+                            <div class="latest-blog-post-content">
+                                <a href="#" class="post-title">
+                                    <h6>Arts and Culture</h6>
+                                </a>
+                                <a href="#" class="post-date">September 09, 2011</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add Widget -->
+                    <div class="add-widget">
+                        <img src="{% static 'img/visionbearer.jpg' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="restriction-area col-md-12 mt-100 mb-100">
+            <p>
+                Unregistered Users Are Restricted From The Blog.
+            </p>
+            <p>
+                <a href="{% url 'register' %}"><u>Register</u>
+                </a> <span>/</span> <a href="{% url 'login' %}"><u>Login</u></a> To View This Page.</p>
+        </div>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <div class="row">
+            <div class="col-md-12">
+                {% if page_obj.has_other_pages %}
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a href="?page={{page_obj.previous_page_number}} " class="page-link">&laquo;</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link">&laquo;</a>
+                    </li>
+                    {% endif %}
+                    {% for i in page_obj.paginator.page_range %}
+                    {% if blog.number == i %}
+                    <li class="page-item active">
+                        <a class="page-link">{{i}}</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                        <a href="?page={{i}}" class="page-link">{{i}}</a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_other_pages %}
+                    <ul class="pagination">
+                        {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a href="?page={{page_obj.next_page_number}} " class="page-link">&raquo;</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link">&raquo;</a>
+                        </li>
+                        {% endif %}
+                        {% endif %}
+                    </ul>
+                    {% endif %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<!-- ##### Blog Area End ##### -->
+
+{% endblock %}

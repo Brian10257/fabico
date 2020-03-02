@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{%block title%}  Location{% endblock %}
+<br>
+<!-- ##### Top Popular Courses Area Start ##### -->
+<div class="top-popular-courses-area mt-50">
+    {% if location %}
+        {% for location in location %}
+
+            <div class="container text-capitalize">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-heading text-center mx-auto wow fadeInUp" data-wow-delay="300ms">
+                                <h1 style="font-family: krinkes_decor_personal_useRg "><u>{{location.title}}</u></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+            
+                        <!-- Single Top Popular Course -->
+                        <div class="col-12">
+                            <div class="d-flex align-items-center flex-wrap mb-50 wow fadeInUp bg-img"  data-wow-delay="400ms">
+                                <div class="popular-course-content">
+                                    <span><span class="font-bold" style="font-size: 20px">Published By; {{location.publisher_title}} :</span> {{loction.publisher_name}}   |  {{location.date_published}} </span>
+                                    <div class="course-ratings">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    </div>
+                                    <br>
+                                    <p class="ml-50 font-size:10px font-weight-light text-black">{{location.paragraph}}</p>
+                                    
+                                    <!-- <a href="/media/{{literature.downloadable_file_1}}" class="btn academy-btn btn-sm" download>
+                                        <img scr="/media/{{literature.downloadable_file_1}}" alt="Download">
+                                    </a> -->
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <img src="{% static 'img/bg-3.jpg' %}" style="height: 100%; width: 100%">
+        {%endfor%}
+    {% else %}
+        <div class="col-md-12">
+                <p class="text-black mt-100 mb-100 font-weight-bold" style="font-size: 60px;">No Info Available</p>
+        </div>
+    {% endif %}
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+              {% if location.has_other_pages %}
+              <ul class="pagination">
+                {% if location.has_previous %}
+                <li class="page-item">
+                  <a href="?page={{location.previous_page_number}} " class="page-link">&laquo;</a>
+                </li>
+                {% else %}
+                    <li class="page-item disabled">
+                      <a class="page-link">&laquo;</a>
+                    </li>
+                {% endif %}
+                {% for i in location.paginator.page_range %}
+                    {% if location.number == i %}
+                        <li class="page-item active">
+                          <a class="page-link">{{i}}</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item">
+                          <a href="?page={{i}}" class="page-link">{{i}}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+              {% if location.has_other_pages %}
+              <ul class="pagination">
+                {% if location.has_next %}
+                <li class="page-item">
+                  <a href="?page={{location.next_page_number}} " class="page-link">&raquo;</a>
+                </li>
+                {% else %}
+                    <li class="page-item disabled">
+                      <a class="page-link">&raquo;</a>
+                    </li>
+                {% endif %}
+              {% endif %}
+              </ul>
+              {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %} About Us{% endblock %}
+{% block content %}
+  <!-- ##### Breadcumb Area Start ##### -->
+  <div class="breadcumb-area bg-img" style="background-image: url(/static/img/breadcrumb.jpg);">
+    <div class="bradcumbContent">
+        <h2 style="font-family: krinkes_decor_personal_useRg; color:#e2f109 ">About3</h2>
+    </div>
+</div>
+<!-- ##### Breadcumb Area End ##### -->
+
+<!-- ##### About Us Area Start ##### -->
+
+<!-- ##### Team Area Start ##### -->
+<section class="teachers-area mt-50 section-padding-0-100 bg-overlay bg-img" style="background-image: url(/static/img/breadcrumb.jpg)">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading text-center mx-auto wow fadeInUp" data-wow-delay="300ms">
+                <h3 class=" text-uppercase text-secondary" style=" margin: 15px; font-family: georgia,garamound,serif; font-style:oblique">the administrative board</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            {% if about %}
+              {% for about in about %}
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-teachers-area text-center mb-100 wow fadeInUp" data-wow-delay={{about.possision}}>
+                        <!-- Thumbnail -->
+                        <div class="teachers-thumbnail">
+                            <img src={{about.image.url}} alt="" class="img-thumbnail" style="width:600px; height:300px">
+                        </div>
+                        <!-- Meta Info -->
+                        <div class="teachers-info mt-30">
+                            <h5 style="color:#000000"> {{about.name}} </h5>
+                            <span class="text-uppercase" style="color:#e2f109">{{about.title}}</span>
+                            <br>
+                            <br>
+                            <div class="container">
+                              <p class="text-black" style="background-color: aquamarine;">{{about.speach}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              {% endfor %}
+            {% else %}
+              <div class="col-md-12">
+                <p class="text-black mt-100 mb-100 font-weight-bold" style="font-size: 60px;">No Info Available</p>
+              </div>
+            {% endif %}
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+              {% if about.has_other_pages %}
+              <ul class="pagination">
+                {% if about.has_previous %}
+                <li class="page-item">
+                  <a href="?page={{about.previous_page_number}} " class="page-link">&laquo;</a>
+                </li>
+                {% else %}
+                    <li class="page-item disabled">
+                      <a class="page-link">&laquo;</a>
+                    </li>
+                {% endif %}
+                {% for i in about.paginator.page_range %}
+                    {% if about.number == i %}
+                        <li class="page-item active">
+                          <a class="page-link">{{i}}</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item">
+                          <a href="?page={{i}}" class="page-link">{{i}}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+              {% if about.has_other_pages %}
+              <ul class="pagination">
+                {% if about.has_next %}
+                <li class="page-item">
+                  <a href="?page={{about.next_page_number}} " class="page-link">&raquo;</a>
+                </li>
+                {% else %}
+                    <li class="page-item disabled">
+                      <a class="page-link">&raquo;</a>
+                    </li>
+                {% endif %}
+              {% endif %}
+              </ul>
+              {% endif %}
+            </div>
+          </div>
+    </div>
+</section>
+
+<section class="about-us-area mt-50 section-padding-100"> 
+    <div style="background-image: url(static/img/bg-admin.jpg);" class="section-padding-100 bg-overlay bg-overlay-color-danger">
+        <div class="container">      
+            <div class="row">
+                <div class="col-12">                
+                    <div class="section-heading text-center mx-auto wow fadeInUp" data-wow-delay="300ms">
+                      <h1 style="font-family: krinkes_regular_personal_usRg; color: #17a2b8; font-size:100px"><u>Our History</u></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="wow fadeInUp container" data-wow-delay="400ms">
+                  {% if about %}
+                    {% for about in about %}
+                    <p class="text-success font-bold">{{about.history | linebreaks}} </p>
+                </div>
+                    {% endfor %}
+                  {% endif %}
+                <br>
+                <br>
+            </div>
+            <div class="container mr-100">
+                <div class="wow fadeInUp" style="width:100%;height:100%;" data-wow-delay="600ms">                     
+                  <div class="about-slides owl-carousel mt-100 wow fadeInUp" >
+                      <img class="rounded-circle align-content-center" src="{% static 'img/bg-about5.jpg' %}" alt="">
+                      <img class="rounded-circle align-content-center" src="{% static 'img/bg-about6.jpg' %}" alt="">
+                      <img class="rounded-circle align-content-center" src="{% static 'img/bg-about7.jpg' %}" alt="">
+                      <img class="rounded-circle align-content-center" src="{% static 'img/bg-about8.jpg' %}" alt="">
+                      <img class="rounded-circle align-content-center" src="{% static 'img/bg-about9.jpg' %}" alt="">
+                      <img class="rounded-circle align-content-right" src="{% static 'img/bg-about11.jpg' %}" alt="">
+                      <img class="rounded-circle align-content-right" src="{% static 'img/bg-about2.jpg' %}" alt="">
+                      <img class="rounded-circle align-content-right" src="{% static 'img/bg-about3.jpg' %}" alt="">
+                      <img class="rounded-circle align-content-right" src="{% static 'img/bg-about4.jpg' %}" alt="">
+                      <img class="rounded-circle align-content-right" src="{% static 'img/bg-about10.jpg' %}" alt=""> 
+                  </div>                                                      
+                </div>                    
+            </div>
+        </div>
+    </div>    
+</section>
+<!-- ##### About Us Area End ##### -->
+
+{% endblock %}

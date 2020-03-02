@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{post.title}} {% endblock %}
+{% block content %}
+{% load crispy_forms_tags %}
+<!--/ Intro Single star /-->
+<section class="intro-single text-capitalize" style="margin-top: 50px;">
+    <div class="container">
+        {% include 'partials/_alerts.html' %}
+        <div class="row">
+            <div class="col-md-12 col-lg-8">
+                <div class="title-single-box">
+                    <h1 class="title-single" style="font-family: Aclonica; color:#000000; margin-top:50px">{{post.title}}</h1>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4">
+                <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'index' %}">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            {{post.title}}
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ Intro Single End /-->
+
+<!--/ News Single Star /-->
+<section class="news-single nav-arrow-b text-capitalize">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="news-img-box">
+                    <img src="{{post.image.url}}" alt="" class="img-thumbnail">
+                </div>
+            </div>
+            <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                <div class="post-information">
+                    <ul class="list-inline text-center color-a">
+                        <li class="list-inline-item mr-2">
+                            <strong>Author: </strong>
+                            <span class="color-text-a">{{post.name}}</span>
+                        </li>
+                        
+                        <li class="list-inline-item">
+                            <strong>Date: </strong>
+                            <span class="color-text-a">{{post.date_published}}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="post-content">
+                    <p class="post-intro"> 
+                        {{post.description | linebreaks}}
+                    </p>
+                </div>
+                <div class="post-footer">
+                    <div class="post-share float-right">
+                        <ul class="list-inline socials">
+                            <li class="list-inline-item">
+                                <a href="{{post.facebook}}">
+                                    <i class="fa fa-facebook" style="color:#295396; font-size: 20px"
+                                        aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="{{post.twitter}}">
+                                    <i class="fa fa-twitter" style="color:#1da0f2; font-size: 20px"
+                                        aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="{{post.instagram}}">
+                                    <i class="fa fa-instagram" style="color:#d3368c; font-size: 20px"
+                                        aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="{{post.google_plus}}">
+                                    <i class="fa fa-google-plus" style="color:#d6201f; font-size: 20px"
+                                        aria-hidden="true"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="{{post.linkedin}}">
+                                    <i class="fa fa-linkedin" style="color:#0077b5; font-size: 20px"
+                                        aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10 offset-md-1 col-lg-10 offset-lg-1">
+                <div class="title-box-d">
+                    {% with comments.count as total_comments %}
+                    <h3 class="title-d" style="font-family: krinkes_decor_personal_useRg; color:#000000"><span
+                            style="font-family: Arial, Helvetica, sans-serif;">{{total_comments}}</span>
+                        <u>Comment(s)</u></h3>
+                    {% endwith %}
+                </div>
+                <div class="box-comments container">
+                    {% if comments %}
+                    {% for comment in comments %}
+                    <ul class="list-comments row">
+                        <li style="margin:40px">
+                            <div class="comment-details">
+                                <h4 class="comment-author">{{comment.name}}</h4>
+                                <span>{{comment.comment_date}}</span>
+                                <a href="{{comment.website}}">{{comment.website}}</a>
+                                <p class="comment-description">
+                                    {{comment.body | linebreaks}}
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="form-comments">
+                    {% if new_comment %}
+                    <div class="alert alert-warning" style="font-size: 20px;" role="alert" data-dismiss="alert">
+                        <button type="button" class="close" data-dismiss="alert"><span
+                                aria-hidden="true">&times;</span></button>
+                        Comment Posted
+                    </div>
+                    {% endif %}
+                </div>
+                <div>
+                    <h3 style="font-size: 35px;font-weight:700;">Leave a comment</h3>
+                </div>
+                <form action="{{blog.get_absolute_url}}" method="post" class="form-a">
+                    {% csrf_token %}
+                    {{comment_form | crispy}}
+                    {%if user.is_authenticated%}
+                    <input type="hidden" name="user_id" value="{{user.id}}">
+                    {% else %}
+                    <input type="hidden" name="user_id" value="0">
+                    {%endif%}
+                    {% if user.is_authenticated %}
+                    <div class="col-md-12">
+                        <button type="submit" style="width: 40%; margin-bottom:10px; background-color:rgb(28, 139, 184)" class="form-submit">Post</button>
+                    </div>
+                    {% else %}
+                    <div class="col-md-12">
+                        <h3><a href="#"><span
+                                    style="font-family: krinkes_decor_personal_useRg; color:#127709 ">Login</span></a>
+                            To Post A Comment</h3>
+                    </div>
+                    {% endif %}
+            </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    </div>
+</section>
+<!--/ News Single End /-->
+
+{% endblock %}

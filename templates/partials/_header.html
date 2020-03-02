@@ -1,0 +1,94 @@
+{%load static %}
+<!-- ##### Header Area Start ##### -->
+<header class="header-area">
+    <!-- Top Header Area -->
+    <div class="top-header bg-info">
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col-12 h-100">
+                    <div class="header-content h-100 d-flex align-items-center justify-content-between">
+                        <div class="academy-logo">
+                            <a href="#"><img src="{% static 'img/logo.png'%}" alt=""></a>
+                        </div>
+                        <div class="login-content">
+                            {% if user.is_authenticated %}
+                                <a class="font-light font-dark" href="#" style="color:#e2f109; font-size: 13px">Welcome <span class="text-white">|</span> </a> 
+                                <span style="color:#4f5049; font-size: 13px" class="text-uppercase"><a href="#"> {{user.username}}</a></span>
+                                <a class="nav-item mr-3">
+                                    <a href="javascript:{document.getElementById('logout').submit()}"
+                                    class="nav-link text-light">
+                                        <i  class="fas fa-sign-out-alt text-danger"></i>Logout
+                                    </a>
+                                <form action="{% url 'logout' %}" method="POST" id="logout" name="logout">
+                                    {% csrf_token %}
+                                    <input type="hidden">
+                                </form>
+                                </a>
+                            {% else %}
+                                <a href="{% url 'register' %}"  class="text-light"><i class="fas fa-user-plus text-warning"></i>Register / </a>
+                                <a href="{%url 'login' %}"class="text-light"><i class="fas fa-sign-in-alt text-warning"></i>Login</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <!-- Navbar Area -->
+    <div class="academy-main-menu">
+        <div class="classy-nav-container breakpoint-off bg-secondary">
+            <div class="container">
+                <!-- Menu -->
+                <nav class="classy-navbar justify-content-between bg-secondary" id="academyNav">
+
+                    <!-- Navbar Toggler -->
+                    <div class="classy-navbar-toggler">
+                        <span class="navbarToggler"><span></span><span></span><span></span></span>
+                    </div>
+
+                    <!-- Menu -->
+                    <div class="classy-menu">
+
+                        <!-- close btn -->
+                        <div class="classycloseIcon">
+                            <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                        </div>
+
+                        <!-- Nav Start -->
+                        <div class="classynav">
+                            <ul>
+                                <li>
+                                    <a href="{% url 'index' %}" class="text-info"><i class="fas fa-home">&nbsp;</i>Home</a>
+                                </li>
+                                <li><a href="#" class="text-info">Pages</a>
+                                    <ul class="dropdown bg-info text-black">
+                                        {% if user.is_authenticated %}<li><a href="#">Photo Galleries</a>
+                                        </li>{% else %} <p class="text-black font-weight-bold mx-auto">LogIn To View Our Photo Gallery</p> {% endif %}                                            
+                                    </ul>
+                                </li>
+
+                                <li>
+                                   <a href="{% url 'about' %}" class="text-info">About</a>
+                                </li>
+    
+                                <li>                                
+                                    <a href="#" class="text-info">Curriculum</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Nav End -->
+                    </div>
+
+                    <!-- Calling Info -->
+                    <div class="calling-info">
+                        <div class="call-center">
+                            <a href="#"><i class="fas fa-phone"></i> <span>(+237) 676415685</span> </a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- ##### Header Area End ##### -->

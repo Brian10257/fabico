@@ -1,0 +1,88 @@
+{%extends 'base.html' %}
+{%load static%}
+{%block content%}
+
+<!-- bootstrap -->
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+
+{%block title%} Sports Activities{%endblock%}   
+  <div class="site-wrap">
+  <div class="site-section text-capitalize"  data-aos="fade">
+    <div class="container-fluid">
+      
+      <div class="row justify-content-center">
+        
+        <div class="col-md-6">
+          <div class="row mb-5">
+            <div class="col-6">
+              <h2 class="site-section-heading text-center" style="font-family: krinkes_decor_personal_useRg; color:#e2f109; font-size:37px;">Sports Activities</h2>
+            </div>
+          </div>
+        </div>
+    
+      </div>
+
+      <div class="row" id="lightgallery">
+        {% if gallery3 %}
+          {% for gallery3 in gallery3 %}
+          <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" data-src= {{gallery3.file_upload.url}}  data-sub-html="<h4 class=' text-capitalize'>{{gallery3.name}}</h4><p class=' text-capitalize'> {{gallery3.description}} </p>">
+            <a href="#"><img src= {{gallery3.file_upload.url}} style="width:600px; height:200px" alt="IMage" class="img-thumbnail"></a>
+          </div>
+          {% endfor %}
+        {% else %}
+          <div class="col-md-12">
+              <p class="text-black font-weight-bold" style="font-size: 60px;">No Pictures Available</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="footer py-4">
+        <div class="container-fluid">
+          <h1 style="font-family:krinkes_regular_personal_usRg;">
+            View Our gallery<span style="font-family:Georgia, 'Times New Roman', Times, serif; color:rgb(29, 142, 170)">|</span>Have Fun
+           </h1>
+           <div class="row">
+              <div class="col-md-12">
+                {% if gallery3.has_other_pages %}
+                <ul class="pagination">
+                  {% if gallery3.has_previous %}
+                  <li class="page-item">
+                    <a href="?page={{gallery3.previous_page_number}} " class="page-link">&laquo;</a>
+                  </li>
+                  {% else %}
+                      <li class="page-item disabled">
+                        <a class="page-link">&laquo;</a>
+                      </li>
+                  {% endif %} 
+                  {% for i in gallery3.paginator.page_range %}
+                      {% if gallery3.number == i %}
+                          <li class="page-item active">
+                            <a class="page-link">{{i}}</a>
+                          </li>
+                          {% else %} 
+                          <li class="page-item">
+                            <a href="?page={{i}}" class="page-link">{{i}}</a>
+                          </li>
+                      {% endif %}
+                  {% endfor %}
+                {% if gallery3.has_other_pages %}
+                <ul class="pagination">
+                  {% if gallery3.has_next %}
+                  <li class="page-item">
+                    <a href="?page={{gallery3.next_page_number}} " class="page-link">&raquo;</a>
+                  </li>
+                  {% else %}
+                      <li class="page-item disabled">
+                        <a class="page-link">&raquo;</a>
+                      </li>
+                  {% endif %}
+                {% endif %}
+                </ul>
+                {% endif %}
+              </div>
+            </div>
+        </div>
+      </div>        
+      </div>
+{%endblock%}

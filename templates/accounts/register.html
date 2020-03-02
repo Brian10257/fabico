@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{%block title%}Join Us{% endblock %}
+{% block content %}
+<!-- Alerts -->
+{% include 'partials/_alerts.html' %}
+<!-- ##### Breadcumb Area Start ##### -->
+<div class="breadcumb-area  mt-50 section-padding-0-100 bg-img" style="background-image: url(/static/img/breadcrumb.jpg);">
+    <div class="bradcumbContent">
+        <h2 style="font-family: krinkes_decor_personal_useRg; color:#e2f109 ">Join Us</h2> 
+    </div>
+</div>
+<!-- ##### Breadcumb Area End ##### -->
+
+<!-- ##### Register Area Start ##### -->
+<section id='register' class="contact-area bg-overlay" style="background-image: url(/static/img/bg-5.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="contact-content">
+                    <div class="row">
+                        <!-- Contact Information -->
+                        <div class="col-12 col-lg-5">
+                            <div class="contact-information wow fadeInUp" data-wow-delay="400ms">
+                                <div class="section-heading text-left">
+                                    <span class="text-bold">Dont't Have An Account?</span>
+                                    <h3 class="text-muted">Register</h3>
+                                    <p class="mt-30 text-black text-capitalize">register to our website today to be connected and get latest info about your evolution in school. help spread the good news of our lovely institution.</p>
+                                </div> 
+                            </div>
+                        </div>
+                        <!-- Contact Form Area -->
+                        <div class="col-12 col-lg-7">
+                            <div class="contact-form-area wow fadeInUp" data-wow-delay="500ms">
+                                
+                                <form action=" {% url 'register'%}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="text" class="form-control" name="first_name" placeholder="First Name" required>
+                                    <input type="text" class="form-control" name="last_name" placeholder="Last Name" required>                                                                                                           
+                                    <input type="text" class="form-control" name="username" placeholder="User Name" required>
+                                    <input type="email" class="form-control" name="email" placeholder="E-mail" required>
+                                    <!-- <select class="form-dropdown form-address-country noTranslate" name="gender" id="input_4_country" data-component="country" aria-labelledby="label_4 sublabel_4_country">
+                                            <option value=""> Please Select </option>
+                                            <option value="Adamawa" name="gender">Male</option>
+                                            <option value="Center" name="gender">Female</option>
+                                    </select> -->
+                                    <input type="password" class="form-control" name='password' placeholder="Password" required>
+					                <input class="form-control" type="password" name="password2" placeholder="Confirm Password" required>
+                                    <button class="btn academy-btn mt-30" type="submit" value="submit">Sign Up</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ##### Register Area End ##### -->
+{% endblock %}

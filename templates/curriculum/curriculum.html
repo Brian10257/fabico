@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{%block title%}Curriculum{%endblock%}
+{% block content %}
+
+<!-- ##### Breadcumb Area Start ##### -->
+<div class="breadcumb-area bg-img" style="background-image: url(static/img/breadcrumb.jpg)">
+    <div class="bradcumbContent">
+        <h2 style="font-family: krinkes_decor_personal_useRg; color:#e2f109 ">Curriculum</h2>
+    </div>
+</div>
+<!-- ##### Breadcumb Area End ##### -->
+
+<!-- ##### Top Popular Courses Area Start ##### -->
+<div class="top-popular-courses-area mt-50 section-padding-100-70 bg-overlay" style="background-image: url(/static/img/bg-6.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading text-center mx-auto wow fadeInUp" data-wow-delay="300ms">
+                    <span><h4 class="text-info font-italic">Top</h4></span>
+                    <h1 class="text-info font-italic">Categories</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            {% if curriculum %}
+                {% for curriculum in curriculum %}
+                    <div class="col-12 col-lg-6 section-padding-100 text-capitalize">
+                        <div class="single-top-popular-course d-flex align-items-center flex-wrap wow fadeInUp" data-wow-delay={{curriculum.possision}}>
+                            <div class="popular-course-content mx-auto">
+                                <h5 style="font-family:krinkes_regular_personal_usRg; font-size:40px" class="mt-30">{{curriculum.subject}}</h5>
+                                <span>{{curriculum.crew}} <p style="color: rgb(100, 22, 153)">Supervisor: {{curriculum.follow_up_by}} </p> <span class="font-weight-bold text-muted">{{curriculum.period_tought}} </span></span>
+                                <div class="course-ratings">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                </div>
+                                <p style="color: #000000">{{curriculum.description}}</p>
+                                <p class="text-secondary">{{curriculum.edit_date}}</p>
+                                <p class="text-capitalize text-black text-center">click on the button bellow to view and/or download the complete program </p>
+                                {% if user.is_authenticated %}<a  href="{{curriculum.detail}}" class="btn academy-btn btn-sm">See More</a>
+                                {% else %}
+                                <div class="mx-auto text-center">
+                                    <h1 style="font-family: krinkes_regular_personal_usRg; font-size:20px" class="text-capitalize text-black">
+                                    login to view and/or download our program for this subject
+                                    </h1>
+                                    <p><a href="{% url 'login' %}" class="text-info text-uppercase">Login</a></p>
+                                    <h1 style="font-family:krinkes_regular_personal_usRg; font-size:20px;" class="text-capitalize text-black"> Don't have an account?</h1>
+                                    <p><a href="{% url 'register' %}" class="text-info text-uppercase">Register</a></p>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-md-12">
+                    <p class="text-black mt-100 mb-100 font-weight-bold" style="font-size: 60px;">No Info Available</p>
+                </div>
+            {% endif%}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+              {% if curriculum.has_other_pages %}
+              <ul class="pagination">
+                {% if curriculum.has_previous %}
+                <li class="page-item">
+                  <a href="?page={{curriculum.previous_page_number}} " class="page-link">&laquo;</a>
+                </li>
+                {% else %}
+                    <li class="page-item disabled">
+                      <a class="page-link">&laquo;</a>
+                    </li>
+                {% endif %}
+                {% for i in curriculum.paginator.page_range %}
+                    {% if curriculum.number == i %}
+                        <li class="page-item active">
+                          <a class="page-link">{{i}}</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item">
+                          <a href="?page={{i}}" class="page-link">{{i}}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+              {% if curriculum.has_other_pages %}
+              <ul class="pagination">
+                {% if curriculum.has_next %}
+                <li class="page-item">
+                  <a href="?page={{curriculum.next_page_number}} " class="page-link">&raquo;</a>
+                </li>
+                {% else %}
+                    <li class="page-item disabled">
+                      <a class="page-link">&raquo;</a>
+                    </li>
+                {% endif %}
+              {% endif %}
+              </ul>
+              {% endif %}
+            </div>
+          </div>
+    </div>
+</div>
+{% endblock %}

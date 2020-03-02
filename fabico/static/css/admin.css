@@ -1,0 +1,81 @@
+#header{
+    height: 50px;
+    background:rgb(14, 168, 196);
+    color: rgb(35, 197, 103);
+}
+
+#branding h1{ 
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color:rgb(65, 59, 55);
+}
+
+a:link,
+a:visited{
+    color: rgb(33, 207, 170);
+}
+
+.object-tools a:link {
+    background: rgb(0, 0, 0)
+}
+
+#header a:link, #header a:visited{
+    color: crimson
+}
+
+a.section:link, a.section:visited{
+    color: rgb(0, 0, 0);
+}
+
+a.active.selector-chooseall, a.active.selector-clearall{
+    color: antiquewhite
+}
+
+.selector-chosen{
+    background: linear-gradient(to right, #18a1b9, #000000);
+    color: #a30000;
+}
+
+.selector-available{
+    background: linear-gradient(to right, #18a1b9, #000000);
+    color: #a30000;
+}
+
+
+
+div.breadcrumbs{
+    background: rgb(15, 139, 26);
+    color: rgb(236, 221, 9);
+}
+
+div.breadcrumbs a {
+    color: rgb(0, 0, 0);
+}
+
+.module h2, .module caption, .inline-group h2{
+    background: linear-gradient(to right, #18a1b9, #000000);
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: linear-gradient(to right, #18a1b9, #000000);
+    color: rgb(0, 0, 0);
+}
+
+.button.default, input[type=submit].default, .submit-row input.default{
+    background: rgb(15, 139, 26);
+    color: rgb(255, 255, 255)
+}
+
+#content-related .module h2{
+    background: linear-gradient(to right, #18a1b9, #000000);
+    color: crimson;
+}
+
+#content-related .actionlist li{
+    background: rgb(14, 168, 196);
+    color: rgb(255, 255, 255);
+}
+
+.quiet, a.quiet:link, a.quiet:visited{
+    color: rgb(0, 0, 0);
+}
+

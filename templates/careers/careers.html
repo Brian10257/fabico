@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{%block title%} Work With Us{% endblock %}
+{% block content %}
+<!-- ##### Breadcumb Area Start ##### -->
+<div class="breadcumb-area bg-img" style="background-image: url(/static/img/breadcrumb.jpg);">
+    <div class="bradcumbContent">
+        <h2 style="font-family: krinkes_decor_personal_useRg; color:#e2f109 ">Job Application</h2>
+    </div>
+</div>
+<!-- ##### Breadcumb Area End ##### -->
+
+<!-- ##### Contact Area Start ##### -->
+<section class="contact-area bg-overlay" style="background-image: url(/static/img/bg-7.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="contact-content">
+                    <div class="row">
+                        <!-- Contact Information --> 
+                        <div class="col-12 col-lg-5">
+                            <div class="contact-information wow fadeInUp" data-wow-delay="400ms">
+                                <div class="section-heading text-left">
+                                    <span>Do You Want To Join Fabico As A Staff Member?</span>
+                                    <h3 class="text-muted">Drop A Job Application</h3>
+                                    <p class="mt-30 text-capitalize text-black">do you need to apply to work with us? drop your applications here. do add your
+                                        resume/CV, pasport size photograph (4x4), a readable application letter, a recomendation letter (If Available),
+                                        job experience, education, last or current Employment. all the fields to your right are mandatory.
+                                    </p>
+                                    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                                    <h3 class="text-uppercase text-danger text-center text-uppercase"><u>Note</u></h3>
+                                    <p class="text-capitalize text-black">name each of your files with your full name before upload(this is to eneable us sort you out properly).
+                                    any file without the full names of the applicant will be ignored and disposed of. </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Contact Form Area -->
+                        <div class="col-12 col-lg-7">
+                                {% include 'partials/_alerts.html' %}
+                            <div class="contact-form-area wow fadeInUp" data-wow-delay="500ms">
+                                <form method="POST" enctype="multipart/form-data">
+                                    {%csrf_token%}
+                                    {%if user.is_authenticated%}
+                                    <input type="hidden" name="user_id" value="{{user.id}}">
+                                    {% else %}
+                                    <input type="hidden" name="user_id" value="0">
+                                    {%endif%}
+                                    <input type="text" class="form-control" {% if user.is_authenticated %}
+                                    value="{{user.first_name}} {{user.last_name}} " {% endif %} name="name"
+                                    id="name" placeholder="Name" required>
+                                    <input type="email" class="form-control" {% if user.is_authenticated %}
+                                    value="{{user.email}}" {% endif %} name="email" id="email" placeholder="E-mail" required>
+                                    <input type="text" class="form-control" placeholder="Phone Number"  id="phone_number" name="phone_number" style="min-height:13px" required>
+                                    <input type="text" id="current_city" name="current_city" class="form-control" value="" placeholder="Current City" required>
+                                    <input type="text" id="neighbour_hood"  class="form-control" name="neighbour_hood" size="46" value="" placeholder="Neighbour Hood" required>
+                                    <li class="form-line" data-type="control_address" id="id_4">
+                                        <div id="cid_4" class="form-input">
+                                          <table summary="" class="form-address-table">
+                                            <tbody>
+                                              <tr>
+                                                <td>      
+                                                  <span class="form-control" style="vertical-align:top">
+                                                    <select class="form-dropdown form-address-country noTranslate" name="place_of_birth" id="input_4_country" data-component="country" aria-labelledby="label_4 sublabel_4_country">
+                                                      <option value=""> Please Select </option>
+                                                      <option value="Adamawa">Adamawa</option>
+                                                      <option value="Center">Center</option>
+                                                      <option value="East">East</option>
+                                                      <option value="Far North">Far-North</option>
+                                                      <option value="Littoral">Littoral</option>
+                                                      <option value="North West">North-West</option>
+                                                      <option value="North">North</option>
+                                                      <option value="South">South</option>
+                                                      <option value="South West">South-West</option>
+                                                      <option value="West">West</option>
+                                                      <option value="other"> Other </option>
+                                                    </select>
+                                                    <label class="form-sub-label" for="input_4_country" name="place_of_birth" id="sublabel_4_country" style="min-height:13px"> Place Of Birth </label>
+                                                  </span>
+                                                </td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                      </li>
+                                    <input type="text" class="form-control" placeholder="Current Employment"  id="current_employment" name="current_employment" style="min-height:13px">
+                                    <input type="text" class="form-control" placeholder="Message Subject" id="subject" name="subject" style="min-height:13px">
+                                    <textarea name="message"  class="form-control" cols="30" rows="10"
+                                    placeholder="Message" required></textarea>
+                                        <input type="file" id="file_upload" name="file_upload" style="font-size: 10px;"  accept=".pdf, .docx, .doc" class="file-upload" data-max-file-size="2M" data-file-minsize="0" data-file-limit="0" multiple required>
+                                        <br>
+                                    {% if user.is_authenticated %}
+                                    <button class="btn academy-btn mt-30" value={{submit}} type="submit">Submit</button>
+                                    {% else %}
+                                    <div class="col-md-12 col-lg-7 mx-auto text-center">
+                                        <h1 style="font-family: krinkes_regular_personal_usRg; font-size:20px" class="text-capitalize text-black">
+                                        login to post a comment
+                                        </h1>
+                                        <p><a href="{% url 'register' %}" class="text-info text-uppercase">Register</a></p>
+                                        <p style="font-size:16px; color:#e2f109;" >Don't have an account?</p>
+                                        <p><a href="{% url 'login' %}" class="text-info text-uppercase">Login</a></p>
+                                    </div>
+                                    {% endif %}
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ##### Contact Area End ##### -->
+{% endblock %}

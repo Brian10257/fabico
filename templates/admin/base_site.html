@@ -1,0 +1,13 @@
+{%extends 'admin/base.html'%}
+{%load static%}
+{%block title%}Fabico Web Admin{% endblock %}
+{%block branding %}
+    <h1 id="head">
+        <div class="academy-logo">
+            <a href="#"><img src="{% static 'img/logo.png'%}" alt="" height="60" width="100"></a>Web Admin
+        </div>
+    </h1>
+    {% endblock %}
+    {%block extrastyle%}
+    <link rel="stylesheet" href="{%static 'css/admin.css' %}">
+    {%endblock%} 

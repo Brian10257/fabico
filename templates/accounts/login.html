@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{%load static%}
+{%block title%} Log Into Account{% endblock %}
+{% block content %}
+
+    <!-- ##### Breadcumb Area Start ##### -->
+    <div class="breadcumb-area bg-img" style="background-image: url(/static/img/breadcrumb.jpg);">
+        <div class="bradcumbContent">
+            <h2 style="font-family: krinkes_decor_personal_useRg; color:#e2f109 ">Log In</h2>
+        </div>
+    </div> 
+    <!-- ##### Breadcumb Area End ##### -->
+ 
+<!-- ##### Contact Area Start ##### -->
+<section class="contact-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="contact-content">
+                    <div class="row">
+                        <!-- Contact Information -->
+                        <div class="col-12 col-lg-5">
+                            <div class="contact-information wow fadeInUp" data-wow-delay="400ms">
+                                <div class="section-heading text-left">
+                                    <span>Signin For More</span>
+                                    <h3 class="text-muted">Log In User</h3>
+                                    <p class="mt-30 text-black text-capitalize">login to have latest news on our institution and for other resources for studies and 
+                                    revision. hope you've got an account with us, if not click on the register button.</p>
+                                    </div>
+                            </div>
+                        </div>
+                        <!-- Contact Form Area -->
+                        <div class="col-12 col-lg-7">
+                            <div class="contact-form-area wow fadeInUp" data-wow-delay="500ms">
+                                <!-- Alerts -->
+                                {% include 'partials/_alerts.html' %}
+                                <form action=" {% url 'login'%}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="text" class="form-control" name="username" placeholder="User Name" required>
+                                    <input type="password" class="form-control" name="password" placeholder="Password" required>                                                                                                           
+                                    <button class="btn academy-btn mt-30" type="submit" value="submit">Login</button>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <p><a class="text-danger font-italic" href="{%url 'password_reset' %}">Forgot Password</a></p>
+                                </form>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ##### Contact Area End ##### -->
+{% endblock %}
