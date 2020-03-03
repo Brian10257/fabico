@@ -11,13 +11,16 @@ POSITION=(
 )
 
 class Curriculum(models.Model):
+    author = models.CharField(max_length=500)
+    author_title = models.CharField(max_length=500, blank=True)
     subject = models.CharField(max_length=200)
+    sub_topic = models.CharField(max_length=300, blank=True)
     crew = models.CharField(max_length=5000, blank=True, verbose_name='Available Teachers')
     follow_up_by = models.CharField(max_length=5000, blank=True)
     period_tought = models.CharField(max_length=5000, blank=True)
     description = models.TextField()
-    possision = models.CharField(max_length=10, blank=True, choices=POSITION, default='400ms')
-    edit_date = models.DateTimeField(default=datetime.now, blank=True)
+    downloadable = models.FileField(blank=True, null=True)
+    date_published = models.DateTimeField(default=datetime.now, blank=True)
     slug = models.SlugField()
 
     def __str__(self):
@@ -27,4 +30,4 @@ class Curriculum(models.Model):
         verbose_name_plural = 'Curriculum'
 
     def get_absolute_url(self):
-        return reverse('subject', kwargs={'slug': self.slug})
+        return reverse('detail', kwargs={'slug': self.slug})
