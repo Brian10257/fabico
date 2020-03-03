@@ -10,6 +10,7 @@ urlpatterns = [
     path('', include('pages.urls')),
     path('blogs/', include('blog.urls')),
     path('careers/', include('careers.urls')),
+    path('programe/', include('curriculum.urls')),
     path('gallery/', include('gallery.urls')),
     path('inquiry/', include('contact.urls')),
     path('School_rules/', include('rules.urls')),

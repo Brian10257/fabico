@@ -42,7 +42,7 @@
                                 <p style="color: #000000">{{curriculum.description}}</p>
                                 <p class="text-secondary">{{curriculum.edit_date}}</p>
                                 <p class="text-capitalize text-black text-center">click on the button bellow to view and/or download the complete program </p>
-                                {% if user.is_authenticated %}<a  href="{{curriculum.detail}}" class="btn academy-btn btn-sm">See More</a>
+                                {% if user.is_authenticated %}<a  href="{{curriculum.get_absolute_url}}" class="btn academy-btn btn-sm">See More</a>
                                 {% else %}
                                 <div class="mx-auto text-center">
                                     <h1 style="font-family: krinkes_regular_personal_usRg; font-size:20px" class="text-capitalize text-black">

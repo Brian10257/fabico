@@ -23,30 +23,28 @@
 
     <div class="site-mobile-menu">
       <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
+        <div class="site-mobile-menu-close mt-3"> 
           <span class="icon-close2 js-menu-toggle"></span>
         </div>
       </div>
       <div class="site-mobile-menu-body"></div>
     </div>
     
-
+{% for gallery in gallery %}
   <div class="container-fluid" data-aos="fade" data-aos-delay="500">
     <div class="swiper-container images-carousel">
         <div class="swiper-wrapper"> 
             <div class="swiper-slide">
               <div class="image-wrap">
                 <div class="image-info">
-                  {% for gallery in gallery_list %}
                   <h2 class="mb-3" style="font-family: krinkes_regular_personal_usRg; color:rgb(105, 102, 94)">{{gallery.title}}</h2>
                   <a href="#" class="btn btn-outline-white py-2 px-4 bg-info" style="font-family: krinkes_regular_personal_usRg; color:#e2f109">More Photos</a>
                 </div>
                 <img src="{{gallery.image.url}}" alt="Image" style="width:700px;height:670px; rotate: 90" >
               </div>
-                  {% endfor %}
             </div>
         </div>
-
+{% endfor %}
         <div class="swiper-pagination"></div>
         <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div>

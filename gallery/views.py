@@ -4,8 +4,6 @@ from django.views.generic import ListView
 from django.views import generic
 from .models import Gallery
 
-class GalleryList(generic.ListView):
-    queryset = Gallery.objects.order_by('-date_added')
-    model = Gallery
-    template_name = 'pages/photo_galleries.html'
-    paginate_by = 6
+def gallery(request):
+    gallery = Gallery.objects.order_by('-date_added')
+    return render (request, 'pages/photo_galleries.html', {'gallery':gallery})
