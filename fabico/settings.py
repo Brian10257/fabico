@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'contact.apps.ContactConfig',
     'rules.apps.RulesConfig',
     'accounts.apps.AccountsConfig',
+    'gallery.apps.GalleryConfig',
     'crispy_forms',
 ]
 

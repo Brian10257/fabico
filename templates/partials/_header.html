@@ -63,8 +63,8 @@
                                 </li>
                                 <li><a href="#" class="text-info">Pages</a>
                                     <ul class="dropdown bg-info text-black">
-                                        {% if user.is_authenticated %}<li><a href="#">Photo Galleries</a>
-                                        </li>{% else %} <p class="text-black font-weight-bold mx-auto">LogIn To View Our Photo Gallery</p> {% endif %}                                            
+                                        {% if user.is_authenticated %}<li><a href="{% url 'gallery' %}">Photo Galleries</a>
+                                        </li>{% else %} <p><a href="{% url 'login' %}">Login</a>To View Photos</p> {% endif %}                                            
                                     </ul>
                                 </li>
 
