@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'gallery.apps.GalleryConfig',
     'curriculum.apps.CurriculumConfig',
+    'flyers.apps.FlyersConfig',
     'crispy_forms',
 ]
 
