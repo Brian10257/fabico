@@ -14,4 +14,4 @@ class Gallery5(models.Model):
         return self.name
 
     class Meta:
-        verbose_name_plural = 'Gallery 5'
+        verbose_name_plural = 'Students'
