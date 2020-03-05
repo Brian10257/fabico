@@ -53,7 +53,7 @@ def login(request):
         if user is not None:
             auth.login(request, user)
             messages.success(request, ': Login Successful. Happy Browsing')
-            return redirect('index')
+            return redirect('speach')
         else:
             messages.error(
                 request, ': Invalid Credentials: Please Verify You Entered The Correct Infomation.')

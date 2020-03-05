@@ -9,8 +9,8 @@
 </div>
 <!-- ##### Breadcumb Area End ##### -->
 
-{% if speach %}
-    {% for speach in speach %}
+{% if speach_list %}
+    {% for speach in speach_list %}
 <section class="speach-area text-capitalize">
         <div class="container">
             <div class="row section-padding-100">
@@ -20,7 +20,7 @@
                         <img class="pic img-thumbnail rounded-circle" src={{speach.image.url}} style="width: 200px; height:200px">
                         <h2 class="mt-50 text-center"><span class="text-info">Title: </span>{{speach.title}}</h2>
                         <p class="text-center"><span class="text-info">Name: </span>{{speach.name}}</p>
-                        <p>{{speach.description}}</p>
+                        <p>{{speach.description | linebreaks}}</p>
                         <p style="color:#dfa520" class="text-right">{{speach.date}}</p>
                     </div>
                 </div>
@@ -32,19 +32,19 @@
 <div class="col-md-6">
     <div class="row">
         <div class="col-md-12">
-            {% if speach.has_other_pages %}
+            {% if page_obj.has_other_pages %}
             <ul class="pagination">
-            {% if speach.has_previous %}
+            {% if page_obj.has_previous %}
             <li class="page-item">
-                <a href="?page={{speach.previous_page_number}} " class="page-link">&laquo;</a>
+                <a href="?page={{page_obj.previous_page_number}} " class="page-link">&laquo;</a>
             </li>
             {% else %}
                 <li class="page-item disabled">
                     <a class="page-link">&laquo;</a>
                 </li>
             {% endif %}
-            {% for i in speach.paginator.page_range %}
-                {% if speach.number == i %}
+            {% for i in page_obj.paginator.page_range %}
+                {% if page_obj.number == i %}
                     <li class="page-item active">
                         <a class="page-link">{{i}}</a>
                     </li>
@@ -54,11 +54,11 @@
                     </li>
                 {% endif %}
             {% endfor %}
-            {% if speach.has_other_pages %}
+            {% if page_obj.has_other_pages %}
             <ul class="pagination">
-            {% if speach.has_next %}
+            {% if page_obj.has_next %}
             <li class="page-item">
-                <a href="?page={{speach.next_page_number}} " class="page-link">&raquo;</a>
+                <a href="?page={{page_obj.next_page_number}} " class="page-link">&raquo;</a>
             </li>
             {% else %}
                 <li class="page-item disabled">
