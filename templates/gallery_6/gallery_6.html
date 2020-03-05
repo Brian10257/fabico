@@ -35,7 +35,7 @@
         {% if gallery6 %}
           {% for gallery6 in gallery6 %}
           <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" data-src= {{gallery6.file_upload.url}}  data-sub-html="<h4 class=' text-capitalize'>{{gallery6.name}}</h4><p class=' text-capitalize'> {{gallery6.description}} </p>">
-            <a href="#"><img src= {{gallery6.file_upload.url}} style="width:600px; height:200px" alt="IMage" class="img-thumbnail"></a>
+            <a href="#"><img src= {{gallery6.file_upload.url}} style="width:600px; height:300px" alt="IMage" class="img-thumbnail"></a>
           </div>
           {% endfor %}
         {% else %}
