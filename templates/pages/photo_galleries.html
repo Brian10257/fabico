@@ -12,14 +12,8 @@
     <!-- ##### Breadcumb Area End ##### -->
       <body>
  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
-  <div class="site-wrap text-capitalize">
+  <div class="site-wrap text-capitalize" style="margin-top: 100px;">
 
     <div class="site-mobile-menu">
       <div class="site-mobile-menu-header">
@@ -30,32 +24,32 @@
       <div class="site-mobile-menu-body"></div>
     </div>
     
-{% for gallery in gallery %}
+
   <div class="container-fluid" data-aos="fade" data-aos-delay="500">
     <div class="swiper-container images-carousel">
         <div class="swiper-wrapper"> 
+{% for gallery in gallery_list %}
             <div class="swiper-slide">
               <div class="image-wrap">
                 <div class="image-info">
                   <h2 class="mb-3" style="font-family: krinkes_regular_personal_usRg; color:rgb(105, 102, 94)">{{gallery.title}}</h2>
-                  <a href="#" class="btn btn-outline-white py-2 px-4 bg-info" style="font-family: krinkes_regular_personal_usRg; color:#e2f109">More Photos</a>
+                  <a href="{{gallery.url_album}}" class="btn btn-outline-white py-2 px-4 bg-info" style="font-family: krinkes_regular_personal_usRg; color:#e2f109">More Photos</a>
                 </div>
                 <img src="{{gallery.image.url}}" alt="Image" style="width:700px;height:670px; rotate: 90" >
               </div>
             </div>
-        </div>
 {% endfor %}
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-scrollbar"></div>
+        </div>
+    <div class="pagination">
+
+    </div>
     </div>
   </div> 
 
   <div class="footer py-4">
     <div class="container-fluid">
       <h1 style="font-family:krinkes_regular_personal_usRg;">
-       Spread The Love<span style="font-family: Georgia, 'Times New Roman', Times, serif; color:rgb(29, 142, 170)">|</span>FABICO
+       Spread The News<span style="font-family: Georgia, 'Times New Roman', Times, serif; color:rgb(29, 142, 170)">|</span>FABICO
       </h1>
     </div>
   </div>

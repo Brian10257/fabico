@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'rules.apps.RulesConfig',
     'accounts.apps.AccountsConfig',
     'gallery.apps.GalleryConfig',
+    'gallery_1.apps.Gallery1Config',
     'curriculum.apps.CurriculumConfig',
     'flyers.apps.FlyersConfig',
     'crispy_forms',
@@ -88,7 +89,7 @@ WSGI_APPLICATION = 'fabico.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'btredb',
+        'NAME': 'fabico',
         'USER': 'postgres',
         'PASSWORD': 'brian21Nd',
         'HOST': 'localhost',

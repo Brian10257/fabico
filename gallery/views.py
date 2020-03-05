@@ -4,6 +4,7 @@ from django.views.generic import ListView
 from django.views import generic
 from .models import Gallery
 
-def gallery(request):
-    gallery = Gallery.objects.order_by('-date_added')
-    return render (request, 'pages/photo_galleries.html', {'gallery':gallery})
+class GalleryList(generic.ListView):
+    queryset = Gallery.objects.order_by('uploaded_on')
+    model = Gallery
+    template_name = "pages/photo_galleries.html"
