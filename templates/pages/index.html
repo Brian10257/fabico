@@ -148,6 +148,8 @@
                 </div>
             </div>
                 <div class="row">
+            {% if user.is_authenticated %}
+                {% if pages %}
                   {% for comment in pages %}
                   <div class="col-12 col-md-6">
                       <div class="single-testimonial-area mb-100 d-flex wow fadeInUp" data-wow-delay="400ms">
@@ -162,6 +164,16 @@
                       </div>
                   </div>
                   {% endfor %}
+                {% else %}
+                <div class="col-md-12">
+                    <p class="text-capitalize display-4">No Comments Available Yet</p>
+                </div>
+                {%endif%}
+            {% else %}
+                <div class="col-md-12">
+                    <p class="display-4"><a style="font-size: 40px;" href="{% url 'login' %}">Login</a> To View Comments</p>
+                </div>
+            {% endif %}
         <!-- Pagination area start -->
              
         <div class="container">
