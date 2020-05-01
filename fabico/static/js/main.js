@@ -2,6 +2,9 @@ setTimeout(function(){
     $('#message').fadeOut('slow');
 }, 5000);
 
+setTimeout(function () {
+  $('#posted').fadeOut('slow');
+}, 5000);
 
 function selectFolder(e) {
   var theFiles = e.target.files;
